@@ -6,10 +6,10 @@
 
 #include "../ofunctions/ForwardTaskFunctor.h"
 
-void makeTest(const Eigen::Vector2d& source,
-              Eigen::Vector2d posA,
-              Eigen::Vector2d posB,
-              Eigen::Vector2d posC) {
+void makeTest(
+        const Eigen::Vector2d &source,
+        Eigen::Vector2d posA, Eigen::Vector2d posB, Eigen::Vector2d posC
+) {
 
     double dAB = (posB - source).norm() - (posA - source).norm();
     double dBC = (posC - source).norm() - (posB - source).norm();
@@ -39,7 +39,7 @@ void makeTest(const Eigen::Vector2d& source,
 }
 
 void test1() {
-    std::cout<<"ft.test1"<<std::endl;
+    std::cout << "ft.test1" << std::endl;
 
     Eigen::Vector2d source(21, 17);
 
@@ -51,7 +51,7 @@ void test1() {
 }
 
 void test2() {
-    std::cout<<"ft.test2"<<std::endl;
+    std::cout << "ft.test2" << std::endl;
     Eigen::Vector2d source(21, 17);
 
     Eigen::Vector2d posA(-2, 5);
@@ -63,7 +63,7 @@ void test2() {
 
 
 void test3() {
-    std::cout<<"ft.test3"<<std::endl;
+    std::cout << "ft.test3" << std::endl;
     Eigen::Vector2d source(14, 25);
 
     Eigen::Vector2d posA(0, 5);
@@ -74,9 +74,8 @@ void test3() {
 }
 
 
-
 void test4() {
-    std::cout<<"ft.test4"<<std::endl;
+    std::cout << "ft.test4" << std::endl;
     Eigen::Vector2d source(14, 25);
 
     Eigen::Vector2d posA(9, 11);

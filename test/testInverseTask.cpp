@@ -6,12 +6,10 @@
 
 #include "../ofunctions/InverseTaskFunctor.h"
 
-void makeTest(Eigen::Vector2d posA,
-              Eigen::Vector2d posB,
-              Eigen::Vector2d posC,
-              Eigen::Vector2d posD,
-              Eigen::Vector2d posE,
-              Eigen::Vector2d posF) {
+void makeTest(
+        Eigen::Vector2d posA, Eigen::Vector2d posB, Eigen::Vector2d posC,
+        Eigen::Vector2d posD, Eigen::Vector2d posE, Eigen::Vector2d posF
+) {
 
     double dAB_from_D = (posB - posD).norm() - (posA - posD).norm();
     double dBC_from_D = (posC - posD).norm() - (posB - posD).norm();

@@ -1,8 +1,10 @@
 #pragma once
 
-
 #include "Functor.h"
 
+/**
+ * Функтор обратной задачаи
+ */
 struct InverseTaskFunctor : Functor<double> {
     InverseTaskFunctor(double posDx, double posDy, double posEx, double posEy,
                        double posFx, double posFy,
@@ -25,6 +27,12 @@ struct InverseTaskFunctor : Functor<double> {
             dAC_from_F(dAC_from_F),
             startPos((posDx + posEx + posFx) / 3, (posDy + posEy + posFy) / 3) {}
 
+    /**
+     * Вычисление значния функций в точке
+     * @param x вектор аргументов
+     * @param fvec вектор значений
+     * @return
+     */
     int operator()(const Eigen::VectorXd &x, Eigen::VectorXd &fvec) const {
         fvec(0) = getCriterionForTwo(
                 posD.x(), posD.y(), x(2), x(3), x(0), x(1)
@@ -60,10 +68,19 @@ struct InverseTaskFunctor : Functor<double> {
         return 0;
     }
 
-
-    double getCriterionForTwo(double x, double y,
-                              double pos1x, double pos1y,
-                              double pos2x, double pos2y) const {
+    /**
+     * Получить аналитическую разность хода
+     * @param x координата X передатчика
+     * @param y координата Y передатчика
+     * @param pos1x координата X первого приёмника
+     * @param pos1y координата Y первого приёмника
+     * @param pos2x координата X второго приёмника
+     * @param pos2y координата Y второго приёмника
+     * @return
+     */
+    static double getCriterionForTwo(
+            double x, double y, double pos1x, double pos1y, double pos2x, double pos2y
+    ) {
         return std::sqrt(
                 (x - pos1x) * (x - pos1x) + (y - pos1y) * (y - pos1y)
         ) - std::sqrt(

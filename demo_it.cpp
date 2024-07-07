@@ -27,7 +27,6 @@ int main(int argc, char *argv[]) {
     double dBC_from_F = (posC - posF).norm() - (posB - posF).norm();
     double dAC_from_F = (posC - posF).norm() - (posA - posF).norm();
 
-
     InverseTaskFunctor functor(
             posD.x(), posD.y(),
             posE.x(), posE.y(),
@@ -43,7 +42,6 @@ int main(int argc, char *argv[]) {
             dAC_from_F
     );
 
-
     Eigen::VectorXd x(6);
     x(0) = functor.startPos.x();
     x(1) = functor.startPos.y();
@@ -53,7 +51,6 @@ int main(int argc, char *argv[]) {
     x(5) = functor.startPos.y();
 
     std::cout << "x: " << x.transpose() << std::endl;
-
 
     Eigen::NumericalDiff<InverseTaskFunctor> numDiff(functor);
     Eigen::LevenbergMarquardt<Eigen::NumericalDiff<InverseTaskFunctor>, double> lm(numDiff);

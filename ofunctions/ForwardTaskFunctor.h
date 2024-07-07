@@ -3,6 +3,9 @@
 
 #include "Functor.h"
 
+/**
+ * Функтор прямой задачи
+ */
 struct ForwardTaskFunctor : Functor<double> {
     ForwardTaskFunctor(double posAx, double posAy, double posBx, double posBy,
                        double posCx, double posCy,
@@ -16,8 +19,14 @@ struct ForwardTaskFunctor : Functor<double> {
             dAC(dAC),
             startPos((posAx + posBx + posCx) / 3, (posAy + posBy + posCy) / 3) {}
 
+    /**
+     * Вычисление значния функций в точке
+     * @param x вектор аргументов
+     * @param fvec вектор значений
+     * @return
+     */
     int operator()(const Eigen::VectorXd &x, Eigen::VectorXd &fvec) const {
-        // Implement y = 10*(x0+3)^2 + (x1-5)^2
+
         fvec(0) = calculateDistance(x(0), x(1), posB, posD) - dAB;
         fvec(1) = calculateDistance(x(0), x(1), posC, posB) - dBC;
         fvec(2) = calculateDistance(x(0), x(1), posC, posD) - dAC;
@@ -26,8 +35,17 @@ struct ForwardTaskFunctor : Functor<double> {
     }
 
 
-    double calculateDistance(double x, double y,
-                             Eigen::Vector2d pos1, Eigen::Vector2d pos2) const {
+    /**
+     * Получить аналитическую разность хода
+     * @param x координата X передатчика
+     * @param y координата Y передатчика
+     * @param pos1 координаты первого приёмника
+     * @param pos2 координаты второго приёмника
+     * @return
+     */
+    static double calculateDistance(
+            double x, double y, Eigen::Vector2d pos1, Eigen::Vector2d pos2
+    ) {
         return std::sqrt(
                 (x - pos1(0)) * (x - pos1(0)) +
                 (y - pos1(1)) * (y - pos1(1))
