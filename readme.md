@@ -22,10 +22,12 @@ apt-get install libeigen3-dev
 Этот алгоритм может рассматриваться, как комбинация 
 метода градиентного спуска и метода Ньютона.
 
-В `Eigen` есть готовая реализация этого метода. По умолчанию якобиан 
+В `Eigen` есть готовая реализация этого метода.
+[здесь](https://stackoverflow.com/questions/18509228/how-to-use-the-eigen-unsupported-levenberg-marquardt-implementation)
+
+По умолчанию якобиан 
 не задаётся в явном виде, а вычисляется с помощью дифференциальных
 разностей. Подробнее можно прочитать 
-[здесь](https://stackoverflow.com/questions/18509228/how-to-use-the-eigen-unsupported-levenberg-marquardt-implementation)
 
 ### Структура проекта
 
