@@ -15,16 +15,13 @@ add_compile_options(
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
-
-add_executable(STC_Demo main.cpp)
-
-add_executable(ForwardTask
+add_executable(DemoForwardTask
         demo_ft.cpp
         ofunctions/Functor.h
         ofunctions/ForwardTaskFunctor.h
 )
 
-target_link_libraries(ForwardTask Eigen3::Eigen)
+target_link_libraries(DemoForwardTask Eigen3::Eigen)
 
 add_executable(TestForwardTask
         test/testForwardTask.cpp
@@ -35,4 +32,22 @@ add_executable(TestForwardTask
 target_link_libraries(TestForwardTask Eigen3::Eigen)
 
 
+add_executable(DemoInverseTask
+        demo_it.cpp
+        ofunctions/Functor.h
+        ofunctions/InverseTaskFunctor.h
+)
+
+target_link_libraries(DemoInverseTask Eigen3::Eigen)
+
+add_executable(TestInverseTask
+        test/testInverseTask.cpp
+        ofunctions/Functor.h
+        ofunctions/InverseTaskFunctor.h
+)
+
+target_link_libraries(TestInverseTask Eigen3::Eigen)
+
+
 add_test(NAME TestForwardTask COMMAND TestForwardTask)
+add_test(NAME TestInverseTask COMMAND TestInverseTask)
